@@ -7,8 +7,11 @@
 //
 
 #include <iostream>
+
 #include "BinarySearchTree.h"
 #include "SingleLinkList.h"
+#include "Stack.h"
+#include "DoubleLinkList.h"
 
 using namespace std;
 
@@ -20,21 +23,13 @@ void line();
 
 int main(int argc, const char * argv[])
 {
-    SingleLinkList list;
+    SingleLinkList<string> list("Hello");
     
-    list.insertToHead(10);
-    list.insertToHead(20);
-    list.insertToHead(30);
-    list.insertToHead(40);
-    list.insertToHead(50);
-    list.insertToHead(60);
-    list.insertToHead(70);
-    list.insertToHead(80);
+    list.insertToHead("My");
+    list.insertToHead("name");
+    list.insertToHead("is");
     
-    list.createCircleToNode(40);
-    
-    list.findCircleEnterance();
-    list.traverseList();
+    list.reverseTraverseList();
 }
 
 void line(){

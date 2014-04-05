@@ -11,6 +11,8 @@
 		810268E618D6C79900E9D48F /* Algorithm_C___.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 810268E518D6C79900E9D48F /* Algorithm_C___.1 */; };
 		81B43F5118E548DA00209384 /* SingleLinkList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81B43F4F18E548DA00209384 /* SingleLinkList.cpp */; };
 		81CDBD8618E8734E001B3FC1 /* BinarySearchTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CDBD8418E8734E001B3FC1 /* BinarySearchTree.cpp */; };
+		81CDCB3118ECEF6200D22518 /* Stack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CDCB2F18ECEF6200D22518 /* Stack.cpp */; };
+		81CDCB3418ECF1EA00D22518 /* DoubleLinkList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CDCB3218ECF1EA00D22518 /* DoubleLinkList.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +36,10 @@
 		81B43F5018E548DA00209384 /* SingleLinkList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleLinkList.h; sourceTree = "<group>"; };
 		81CDBD8418E8734E001B3FC1 /* BinarySearchTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinarySearchTree.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		81CDBD8518E8734E001B3FC1 /* BinarySearchTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinarySearchTree.h; sourceTree = "<group>"; };
+		81CDCB2F18ECEF6200D22518 /* Stack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stack.cpp; sourceTree = "<group>"; };
+		81CDCB3018ECEF6200D22518 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
+		81CDCB3218ECF1EA00D22518 /* DoubleLinkList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleLinkList.cpp; sourceTree = "<group>"; };
+		81CDCB3318ECF1EA00D22518 /* DoubleLinkList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleLinkList.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +73,10 @@
 			isa = PBXGroup;
 			children = (
 				810268E318D6C79900E9D48F /* main.cpp */,
+				81CDCB2F18ECEF6200D22518 /* Stack.cpp */,
+				81CDCB3018ECEF6200D22518 /* Stack.h */,
+				81CDCB3218ECF1EA00D22518 /* DoubleLinkList.cpp */,
+				81CDCB3318ECF1EA00D22518 /* DoubleLinkList.h */,
 				81B43F4F18E548DA00209384 /* SingleLinkList.cpp */,
 				81B43F5018E548DA00209384 /* SingleLinkList.h */,
 				81CDBD8418E8734E001B3FC1 /* BinarySearchTree.cpp */,
@@ -127,6 +137,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81CDCB3418ECF1EA00D22518 /* DoubleLinkList.cpp in Sources */,
+				81CDCB3118ECEF6200D22518 /* Stack.cpp in Sources */,
 				810268E418D6C79900E9D48F /* main.cpp in Sources */,
 				81B43F5118E548DA00209384 /* SingleLinkList.cpp in Sources */,
 				81CDBD8618E8734E001B3FC1 /* BinarySearchTree.cpp in Sources */,
