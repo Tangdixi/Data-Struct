@@ -22,7 +22,7 @@ struct BinarySearchTreeNode{
     :value(0), height(0), left(NULL), right(NULL){};
     
     BinarySearchTreeNode(const Type& value_)
-    :value(value_), height(0), left(NULL), right(NULL){}
+    :value(value_), height(1), left(NULL), right(NULL){}
     
     Type value;
     unsigned int height;
@@ -151,7 +151,7 @@ private:
     BinarySearchTreeNode<Type> *root_;
 protected:
     
-    /*  Private Functions  */
+    /*  Protect Functions  */
     //
     bool contains(BinarySearchTreeNode<Type> *root, const Type& value);
     void deleteNode(const Type& value, BinarySearchTreeNode<Type> *&root);
@@ -164,7 +164,8 @@ protected:
     void levelTraverse(BinarySearchTreeNode<Type> *&root);
     unsigned int countLeaf(BinarySearchTreeNode<Type> *&root);
     unsigned int depth(BinarySearchTreeNode<Type> *&root);
-    void configureHeight(BinarySearchTreeNode<Type> *&root);
+    unsigned int height(BinarySearchTreeNode<Type> *&root) const;
+    unsigned int maxHeightBetween(unsigned int nodeAHeight, unsigned int nodeBHeight) const;
     bool compare(BinarySearchTreeNode<Type> *&selfTreeRoot, BinarySearchTreeNode<Type> *&otherTreeRoot);
     bool isAVLTree(BinarySearchTreeNode<Type> *&root);
     unsigned int farestDistance(BinarySearchTreeNode<Type> *root);
@@ -178,9 +179,6 @@ protected:
 
 template <class Type>
 BinarySearchTree<Type>::BinarySearchTree(){
-    if (!root_) {
-        root_ = new BinarySearchTreeNode<Type>();
-    }
 }
 
 template <class Type>
@@ -261,29 +259,24 @@ bool BinarySearchTree<Type>::contains(BinarySearchTreeNode<Type> *node, const Ty
 }
 
 template <class Type>
-void BinarySearchTree<Type>::configureHeight(){
-    if (root_) {
-        configureHeight(root_);
+unsigned int BinarySearchTree<Type>::height(BinarySearchTreeNode<Type> *&root) const{
+    if (!root) {
+        return 0;
     }
+    return root -> height;
 }
 
 template <class Type>
-void BinarySearchTree<Type>::configureHeight(BinarySearchTreeNode<Type> *&root){
-    if (!root) {
-        return ;
-    }
-    root -> height = depth(root);
-    configureHeight(root -> left);
-    configureHeight(root -> right);
+unsigned int BinarySearchTree<Type>::maxHeightBetween(unsigned int nodeAHeight, unsigned int nodeBHeight) const{
+    return (nodeAHeight > nodeBHeight ? nodeAHeight : nodeBHeight);
 }
 
 #pragma mark - Delete node
 
 template <class Type>
 void BinarySearchTree<Type>::deleteNode(const Type& value){
-    BinarySearchTreeNode<Type> *root = this -> root();
-    if (find(value)) {
-        deleteNode(value, root);
+    if (findNode(value)) {
+        deleteNode(value, root_);
     }
 }
 
@@ -295,8 +288,9 @@ void BinarySearchTree<Type>::deleteNode(const Type& value, BinarySearchTreeNode<
     if (value < root -> value){
         deleteNode(value, root -> left);
     }
-    else if (root -> right){
-        deleteNode(value, root -> right);
+    else if (value > root -> value){
+        deleteNode(value, root ->
+                   right);
     }
     else if (root -> left && root -> right){
         root -> value = findMax(root -> right) -> value;
@@ -313,28 +307,26 @@ void BinarySearchTree<Type>::deleteNode(const Type& value, BinarySearchTreeNode<
 
 template <class Type>
 void BinarySearchTree<Type>::findMin(){
-    BinarySearchTreeNode<Type> *root = this -> root();
-    findMin(root);
+    findMin(root_);
 }
 
 template <class Type>
 BinarySearchTreeNode<Type>* BinarySearchTree<Type>::findMin(BinarySearchTreeNode<Type> *&root){
-    if (!root) {
-        return NULL;
+    if (root -> left == NULL) {
+        return root;
     }
     return findMin(root -> left);
 }
 
 template <class Type>
 void BinarySearchTree<Type>::findMax(){
-    BinarySearchTreeNode<Type> *root = this -> root();
-    findMax(root);
+    findMax(root_);
 }
 
 template <class Type>
 BinarySearchTreeNode<Type>* BinarySearchTree<Type>::findMax(BinarySearchTreeNode<Type> *&root){
-    if (!root) {
-        return NULL;
+    if (root -> right == NULL) {
+        return root;
     }
     return findMin(root -> right);
 }
@@ -343,7 +335,11 @@ BinarySearchTreeNode<Type>* BinarySearchTree<Type>::findMax(BinarySearchTreeNode
 
 template <class Type>
 void BinarySearchTree<Type>::insertNode(vector<Type>& values){
-    for (vector<int>::iterator iter(values.begin()); iter != values.end(); iter++) {
+    for (typename vector<Type>::iterator iter(values.begin()); iter != values.end(); iter++) {
+        if (!root_) {
+            root_ = new BinarySearchTreeNode<Type>(*iter);
+            continue;
+        }
         insertNode(*iter);
     }
 }
@@ -362,12 +358,16 @@ void BinarySearchTree<Type>::insertNode(BinarySearchTreeNode<Type> *&root, const
     else {
         return ;
     }
+    root -> height = maxHeightBetween(height(root -> left), height(root -> right)) + 1;
 }
 
 template <class Type>
 void BinarySearchTree<Type>::insertNode(const Type& value){
-    BinarySearchTreeNode<Type> *root = this -> root();
-    insertNode(root, value);
+    if (!root_) {
+        root_ = new BinarySearchTreeNode<Type>(value);
+        return;
+    }
+    insertNode(root_, value);
 }
 
 #pragma mark - Print tree
@@ -620,7 +620,7 @@ bool BinarySearchTree<Type>::getNodePath(BinarySearchTreeNode<Type> *&root, Bina
 template <class Type>
 BinarySearchTreeNode<Type>* BinarySearchTree<Type>::findNode(const Type& value){
     BinarySearchTreeNode<Type> *root = this -> root();
-    return find(root, value);
+    return findNode(root, value);
 }
 
 template <class Type>
@@ -629,10 +629,10 @@ BinarySearchTreeNode<Type>* BinarySearchTree<Type>::findNode(BinarySearchTreeNod
         return NULL;
     }
     else if (root -> value > value) {
-        return find(root -> left, value);
+        return findNode(root -> left, value);
     }
     else if (root -> value < value) {
-        return find(root -> right, value);
+        return findNode(root -> right, value);
     }
     else {
         return root;
