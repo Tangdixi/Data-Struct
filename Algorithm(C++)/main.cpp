@@ -7,11 +7,13 @@
 //
 
 #include <iostream>
+#include <vector>
 
 #include "BinarySearchTree.h"
 #include "SingleLinkList.h"
 #include "Stack.h"
 #include "DoubleLinkList.h"
+#include "AVLTree.h"
 
 using namespace std;
 
@@ -23,13 +25,14 @@ void line();
 
 int main(int argc, const char * argv[])
 {
-    SingleLinkList<string> list("Hello");
+    AVLTree<int> avlTree(10);
+    avlTree.insertNode(20);
+    avlTree.insertNode(5);
+    avlTree.insertNode(4);
     
-    list.insertToHead("My");
-    list.insertToHead("name");
-    list.insertToHead("is");
+    avlTree.configureHeight();
     
-    list.reverseTraverseList();
+    avlTree.preOrderTraverse();
 }
 
 void line(){

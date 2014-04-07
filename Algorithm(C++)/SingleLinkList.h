@@ -51,8 +51,8 @@ public:
     
     /*  Construct Function 2  */
     SingleLinkList();
-    SingleLinkList(Type value);
-    SingleLinkList(vector<Type> values);
+    SingleLinkList(const Type& value);
+    SingleLinkList(vector<Type>& values);
     
     /*  Access Local Variable  */
     //
@@ -80,7 +80,7 @@ public:
     
     /*  Insert a new node to the list in target index  */
     //
-    void insertToIndex(const Type& value, const Type& index);
+    void insertToIndex(const Type& value, unsigned int index);
     
     /*  Delete a node from a list  */
     //
@@ -88,7 +88,7 @@ public:
     
     /*  Delete a node from the list in the target index  */
     //
-    void deleteIndex(const Type& value, const Type& index);
+    void deleteIndex(const Type& value, unsigned int index);
     
     /*  Traverse the list   */
     //
@@ -121,9 +121,9 @@ private:
     SingleLinkListNode<Type>* findNode(SingleLinkListHeadNode<Type> *&head, const Type& value);
     void insertToHead(SingleLinkListHeadNode<Type> *&head, const Type& value);
     void insertToTail(SingleLinkListHeadNode<Type> *&head, const Type& value);
-    void insertToIndex(SingleLinkListHeadNode<Type> *&head, const Type& value, const Type& index);
+    void insertToIndex(SingleLinkListHeadNode<Type> *&head, const Type& value, unsigned int index);
     void deleteNode(SingleLinkListHeadNode<Type> *&head, const Type& value);
-    void deleteIndex(SingleLinkListHeadNode<Type> *&head, const Type& value, const Type& index);
+    void deleteIndex(SingleLinkListHeadNode<Type> *&head, const Type& value, unsigned int index);
     void traverseList(SingleLinkListHeadNode<Type> *&head);
     void reverseTraverseList(SingleLinkListNode<Type> *&node);
     unsigned int nodeCount(SingleLinkListHeadNode<Type> *&head);
@@ -143,7 +143,7 @@ SingleLinkList<Type>::SingleLinkList(){
 }
 
 template <class Type>
-SingleLinkList<Type>::SingleLinkList(Type value){
+SingleLinkList<Type>::SingleLinkList(const Type& value){
     if (!head_) {
         head_ = new SingleLinkListHeadNode<Type>();
     }
@@ -151,7 +151,7 @@ SingleLinkList<Type>::SingleLinkList(Type value){
 }
 
 template <class Type>
-SingleLinkList<Type>::SingleLinkList(vector<Type> values){
+SingleLinkList<Type>::SingleLinkList(vector<Type>& values){
     if (!this -> head_) {
         head_ = new SingleLinkListHeadNode<Type>();
     }
@@ -281,13 +281,13 @@ void SingleLinkList<Type>::insertToTail(SingleLinkListHeadNode<Type> *&head, con
 }
 
 template <class Type>
-void SingleLinkList<Type>::insertToIndex(const Type &value, const Type &index){
+void SingleLinkList<Type>::insertToIndex(const Type &value, unsigned int index){
     SingleLinkListHeadNode<Type> *head = this -> head();
     insertToIndex(head, value, index);
 }
 
 template <class Type>
-void SingleLinkList<Type>::insertToIndex(SingleLinkListHeadNode<Type> *&head, const Type &value, const Type &index){
+void SingleLinkList<Type>::insertToIndex(SingleLinkListHeadNode<Type> *&head, const Type &value, unsigned int index){
     if (!head) {
         cout << "Head node no found\n";
         return ;

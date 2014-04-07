@@ -19,12 +19,13 @@
 template<typename Type>
 struct BinarySearchTreeNode{
     BinarySearchTreeNode()
-    :value(0), left(NULL), right(NULL){};
+    :value(0), height(0), left(NULL), right(NULL){};
     
-    BinarySearchTreeNode(const int& value_)
-    :value(value_), left(NULL), right(NULL){}
+    BinarySearchTreeNode(const Type& value_)
+    :value(value_), height(0), left(NULL), right(NULL){}
     
     Type value;
+    unsigned int height;
     BinarySearchTreeNode<Type> *left;
     BinarySearchTreeNode<Type> *right;
 };
@@ -34,77 +35,143 @@ using namespace std;
 template <class Type>
 class BinarySearchTree{
 public:
+    
+    /*  Construct Function  */
+    //
     BinarySearchTree();
-    BinarySearchTree(Type value);
-    BinarySearchTree(vector<Type> values);
+    BinarySearchTree(const Type& value);
+    BinarySearchTree(vector<Type>& values);
     BinarySearchTree(BinarySearchTree<Type>& otherTree);
-    BinarySearchTree(int *preOrder, int *inOrder, const unsigned int& length, const unsigned int& type);
+    BinarySearchTree(int *preOrder, int *inOrder, const unsigned int length, const unsigned int type);
     
+    /*  Access Private Variable  */
+    //
     BinarySearchTreeNode<Type>* root() const;
-    bool contains(Type value);
-    bool contains(BinarySearchTreeNode<Type> *root, Type value);
     
-    void insertNode(vector<Type> values);
-    void insertNode(Type value);
-    void insertNode(BinarySearchTreeNode<Type> *&root, Type value);
+    /*  Judge does the BSTree has the target node  */
+    //
+    bool contains(const Type& value);
+    
+    /*  Insert a set of nodes into BSTree  */
+    //
+    void insertNode(vector<Type>& values);
+    
+    /*  Insert a new node into BSTree  */
+    //
+    void insertNode(const Type& value);
+    
+    /*  Print the Element in a node  */
+    //
     void print(BinarySearchTreeNode<Type> *&currentNode);
     
-    void deleteNode(Type value);
-    void deleteNode(Type value, BinarySearchTreeNode<Type> *&root);
+    /*  Configure the tree's height  */
+    //
+    void configureHeight();
     
+    /*  Delete a node if it exist in the BSTree  */
+    //
+    void deleteNode(const Type& value);
+    
+    /*  Find a node has a min element in the BSTree  */
+    //
     void findMin();
-    BinarySearchTreeNode<Type>* findMin(BinarySearchTreeNode<Type> *&root);
     
+    /*  Find a node has a max element in the BSTree  */
+    //
     void findMax();
-    BinarySearchTreeNode<Type>* findMax(BinarySearchTreeNode<Type> *&root);
     
+    /*  Traverse the BSTree in Pre Order  */
+    //
     void preOrderTraverse();
-    void preOrderTraverse(BinarySearchTreeNode<Type> *&root);
     
+    /*  Traverse the BSTree in In Order  */
+    //
     void inOrderTraverse();
-    void inOrderTraverse(BinarySearchTreeNode<Type> *&root);
     
+    /*  Traverse the BSTree in Post Order  */
+    //
     void postOrderTraverse();
-    void postOrderTraverse(BinarySearchTreeNode<Type> *&root);
     
+    /*  Traverse the BSTree in Level Order  */
+    //
     void levelTraverse();
-    void levelTraverse(BinarySearchTreeNode<Type> *&root);
     
-    unsigned int countNodesInLevel(BinarySearchTreeNode<Type> *&root, int level);
+    /*  Count the node in the level of the BSTtree  */
+    //
+    unsigned int countNodesInLevel(BinarySearchTreeNode<Type> *&root, unsigned int level);
     
+    /*  Count leaf in a BSTree  */
+    //
     void countLeaf();
-    unsigned int countLeaf(BinarySearchTreeNode<Type> *&root);
     
+    /*  Judge if two BSTree is equal  */
+    //
     bool isEqualTo(BinarySearchTree<Type> &otherTree);
-    bool compare(BinarySearchTreeNode<Type> *&selfTreeRoot, BinarySearchTreeNode<Type> *&otherTreeRoot);
     
+    /*  The depth of the BSTree  */
+    //
     unsigned int depth();
-    unsigned int depth(BinarySearchTreeNode<Type> *&root);
     
+    /*  Judge if the BSTree is balance  */
+    //
     bool isAVLTree();
-    bool isAVLTree(BinarySearchTreeNode<Type> *&root);
     
+    /*  Create a mirror of the BSTree  */
+    //
     void treesMirror();
-    BinarySearchTreeNode<Type>* mirror(BinarySearchTreeNode<Type> *&root);
     
-    BinarySearchTreeNode<Type>* find(Type value);
-    BinarySearchTreeNode<Type>* find(BinarySearchTreeNode<Type> *root, Type value);
+    /*  Find a node in a BSTree  */
+    //
+    BinarySearchTreeNode<Type>* findNode(const Type& value);
     
-    Type commonAncestor(Type valueA, Type valueB);
-    BinarySearchTreeNode<Type>* commonAncestor(BinarySearchTreeNode<Type> *root, BinarySearchTreeNode<Type> *childA, BinarySearchTreeNode<Type> *childB);
-    bool getNodePath(BinarySearchTreeNode<Type> *&root, BinarySearchTreeNode<Type> *child, list<BinarySearchTreeNode<Type> *> &path);
+    /*  Find the commom ancestor of two nodes in a BSTree  */
+    //
+    Type commonAncestor(const Type& valueA, const Type& valueB);
     
+    /*  Caculate the distance from node A to node B in a BStree  */
+    //
     unsigned int farestDistance();
-    unsigned int farestDistance(BinarySearchTreeNode<Type> *root);
     
-    BinarySearchTreeNode<Type>* reBuildTreeThroughPreAndInOrder(int *preOrder, int *inOrder, int nodeNum);
-    BinarySearchTreeNode<Type>* rebuildTreeThroughInAndPostOrder(int *inOrder, int *postOrder, int nodeNum);
+    /*  Rebuild a BSTree according to the Pre Order and In Order  */
+    //
+    BinarySearchTreeNode<Type>* reBuildTreeThroughPreAndInOrder(int *preOrder, int *inOrder, unsigned int nodeNum);
     
-    // Over load operator
+    /*  Rebuild a BSTree according to the In Order and Post Order  */
+    //
+    BinarySearchTreeNode<Type>* rebuildTreeThroughInAndPostOrder(int *inOrder, int *postOrder, unsigned int nodeNum);
+    
+    /*  Overload Operator  */
+    //
     BinarySearchTree<Type> &operator=(BinarySearchTree<Type> const& otherTree);
     
 private:
+    
+    /*  Private Variable  */
+    //
     BinarySearchTreeNode<Type> *root_;
+protected:
+    
+    /*  Private Functions  */
+    //
+    bool contains(BinarySearchTreeNode<Type> *root, const Type& value);
+    void deleteNode(const Type& value, BinarySearchTreeNode<Type> *&root);
+    BinarySearchTreeNode<Type>* findMin(BinarySearchTreeNode<Type> *&root);
+    BinarySearchTreeNode<Type>* findMax(BinarySearchTreeNode<Type> *&root);
+    void insertNode(BinarySearchTreeNode<Type> *&root, const Type& value);
+    void preOrderTraverse(BinarySearchTreeNode<Type> *&root);
+    void inOrderTraverse(BinarySearchTreeNode<Type> *&root);
+    void postOrderTraverse(BinarySearchTreeNode<Type> *&root);
+    void levelTraverse(BinarySearchTreeNode<Type> *&root);
+    unsigned int countLeaf(BinarySearchTreeNode<Type> *&root);
+    unsigned int depth(BinarySearchTreeNode<Type> *&root);
+    void configureHeight(BinarySearchTreeNode<Type> *&root);
+    bool compare(BinarySearchTreeNode<Type> *&selfTreeRoot, BinarySearchTreeNode<Type> *&otherTreeRoot);
+    bool isAVLTree(BinarySearchTreeNode<Type> *&root);
+    unsigned int farestDistance(BinarySearchTreeNode<Type> *root);
+    BinarySearchTreeNode<Type>* findNode(BinarySearchTreeNode<Type> *root, const Type& value);
+    BinarySearchTreeNode<Type>* mirror(BinarySearchTreeNode<Type> *&root);
+    BinarySearchTreeNode<Type>* commonAncestor(BinarySearchTreeNode<Type> *root, BinarySearchTreeNode<Type> *childA, BinarySearchTreeNode<Type> *childB);
+    bool getNodePath(BinarySearchTreeNode<Type> *&root, BinarySearchTreeNode<Type> *child, list<BinarySearchTreeNode<Type> *> &path);
 };
 
 #pragma mark - Construct Function
@@ -117,15 +184,15 @@ BinarySearchTree<Type>::BinarySearchTree(){
 }
 
 template <class Type>
-BinarySearchTree<Type>::BinarySearchTree(Type value){
-    if (root_) {
+BinarySearchTree<Type>::BinarySearchTree(const Type& value){
+    if (!root_) {
         root_ = new BinarySearchTreeNode<Type>(value);
     }
 }
 
 template <class Type>
-BinarySearchTree<Type>::BinarySearchTree(vector<Type> values){
-    if (!this -> root_) {
+BinarySearchTree<Type>::BinarySearchTree(vector<Type>& values){
+    if (!root_) {
         vector<int>::iterator iter(values.begin());
         root_ = new BinarySearchTreeNode<Type>(*iter);
         
@@ -139,8 +206,8 @@ BinarySearchTree<Type>::BinarySearchTree(vector<Type> values){
 }
 
 template <class Type>
-BinarySearchTree<Type>::BinarySearchTree(int *preOrder, int *inOrder, const unsigned int& length, const unsigned int& type){
-    if (!this -> root_) {
+BinarySearchTree<Type>::BinarySearchTree(int *preOrder, int *inOrder, const unsigned int length, const unsigned int type){
+    if (!root_) {
         if (type == 0) {
             root_ = reBuildTreeThroughPreAndInOrder(preOrder, inOrder, length);
         }
@@ -174,13 +241,13 @@ unsigned int BinarySearchTree<Type>::depth(BinarySearchTreeNode<Type> *&root){
 }
 
 template <class Type>
-bool BinarySearchTree<Type>::contains(Type value){
+bool BinarySearchTree<Type>::contains(const Type& value){
     BinarySearchTreeNode<Type>* root = this -> root();
     return contains(root, value);
 }
 
 template <class Type>
-bool BinarySearchTree<Type>::contains(BinarySearchTreeNode<Type> *node, Type value){
+bool BinarySearchTree<Type>::contains(BinarySearchTreeNode<Type> *node, const Type& value){
     if (!node) {
         return false;
     }
@@ -193,10 +260,27 @@ bool BinarySearchTree<Type>::contains(BinarySearchTreeNode<Type> *node, Type val
     return true;
 }
 
+template <class Type>
+void BinarySearchTree<Type>::configureHeight(){
+    if (root_) {
+        configureHeight(root_);
+    }
+}
+
+template <class Type>
+void BinarySearchTree<Type>::configureHeight(BinarySearchTreeNode<Type> *&root){
+    if (!root) {
+        return ;
+    }
+    root -> height = depth(root);
+    configureHeight(root -> left);
+    configureHeight(root -> right);
+}
+
 #pragma mark - Delete node
 
 template <class Type>
-void BinarySearchTree<Type>::deleteNode(Type value){
+void BinarySearchTree<Type>::deleteNode(const Type& value){
     BinarySearchTreeNode<Type> *root = this -> root();
     if (find(value)) {
         deleteNode(value, root);
@@ -204,7 +288,7 @@ void BinarySearchTree<Type>::deleteNode(Type value){
 }
 
 template <class Type>
-void BinarySearchTree<Type>::deleteNode(Type value, BinarySearchTreeNode<Type> *&root){
+void BinarySearchTree<Type>::deleteNode(const Type& value, BinarySearchTreeNode<Type> *&root){
     if (!root) {
         return ;
     }
@@ -258,14 +342,14 @@ BinarySearchTreeNode<Type>* BinarySearchTree<Type>::findMax(BinarySearchTreeNode
 #pragma mark - Insert function
 
 template <class Type>
-void BinarySearchTree<Type>::insertNode(vector<Type> values){
+void BinarySearchTree<Type>::insertNode(vector<Type>& values){
     for (vector<int>::iterator iter(values.begin()); iter != values.end(); iter++) {
         insertNode(*iter);
     }
 }
 
 template <class Type>
-void BinarySearchTree<Type>::insertNode(BinarySearchTreeNode<Type> *&root, Type value){
+void BinarySearchTree<Type>::insertNode(BinarySearchTreeNode<Type> *&root, const Type& value){
     if (!root) {
         root = new BinarySearchTreeNode<Type>(value);
     }
@@ -281,7 +365,7 @@ void BinarySearchTree<Type>::insertNode(BinarySearchTreeNode<Type> *&root, Type 
 }
 
 template <class Type>
-void BinarySearchTree<Type>::insertNode(Type value){
+void BinarySearchTree<Type>::insertNode(const Type& value){
     BinarySearchTreeNode<Type> *root = this -> root();
     insertNode(root, value);
 }
@@ -290,12 +374,12 @@ void BinarySearchTree<Type>::insertNode(Type value){
 
 template <class Type>
 void BinarySearchTree<Type>::print(BinarySearchTreeNode<Type> *&currentNode){
-    cout << currentNode -> value << ' ';
+    cout << " - " << currentNode -> value;
+    cout << "(" << currentNode -> height << ")";
 }
 
 #pragma mark - Traverse tree
 
-// PreOrder Traverse
 template <class Type>
 void BinarySearchTree<Type>::preOrderTraverse(){
     BinarySearchTreeNode<Type> *root = this -> root();
@@ -312,7 +396,6 @@ void BinarySearchTree<Type>::preOrderTraverse(BinarySearchTreeNode<Type> *&root)
     preOrderTraverse(root -> right);
 }
 
-// InOrder Traverse
 template <class Type>
 void BinarySearchTree<Type>::inOrderTraverse(){
     BinarySearchTreeNode<Type> *root = this -> root();
@@ -329,7 +412,6 @@ void BinarySearchTree<Type>::inOrderTraverse(BinarySearchTreeNode<Type> *&root){
     inOrderTraverse(root -> right);
 }
 
-// PostOrder Traverse
 template <class Type>
 void BinarySearchTree<Type>::postOrderTraverse(){
     BinarySearchTreeNode<Type> *root = this -> root();
@@ -346,7 +428,6 @@ void BinarySearchTree<Type>::postOrderTraverse(BinarySearchTreeNode<Type> *&root
     print(root);
 }
 
-// Level Traverse
 template <class Type>
 void BinarySearchTree<Type>::levelTraverse(){
     BinarySearchTreeNode<Type> *root = this -> root();
@@ -377,7 +458,7 @@ void BinarySearchTree<Type>::levelTraverse(BinarySearchTreeNode<Type> *&root){
 }
 
 template <class Type>
-unsigned int BinarySearchTree<Type>::countNodesInLevel(BinarySearchTreeNode<Type> *&root, int level){
+unsigned int BinarySearchTree<Type>::countNodesInLevel(BinarySearchTreeNode<Type> *&root, unsigned int level){
     if (!root) {
         return 0;
     }
@@ -395,7 +476,7 @@ void BinarySearchTree<Type>::countLeaf(){
 }
 
 template <class Type>
-int BinarySearchTree<Type>::countLeaf(BinarySearchTreeNode<Type> *&root){
+unsigned int BinarySearchTree<Type>::countLeaf(BinarySearchTreeNode<Type> *&root){
     if (!root) {
         return 0;
     }
@@ -469,7 +550,7 @@ BinarySearchTreeNode<Type>* BinarySearchTree<Type>::mirror(BinarySearchTreeNode<
 
 #pragma mark - Search the previous ancestor
 template <class Type>
-Type BinarySearchTree<Type>::commonAncestor(Type valueA, Type valueB){
+Type BinarySearchTree<Type>::commonAncestor(const Type& valueA, const Type& valueB){
     BinarySearchTreeNode<Type> *root = this -> root();
     BinarySearchTreeNode<Type> *ancestorNode = commonAncestor(root, find(root, valueA), find(root, valueB));
     
@@ -537,13 +618,13 @@ bool BinarySearchTree<Type>::getNodePath(BinarySearchTreeNode<Type> *&root, Bina
 #pragma mark - Find Node
 
 template <class Type>
-BinarySearchTreeNode<Type>* BinarySearchTree<Type>::find(Type value){
+BinarySearchTreeNode<Type>* BinarySearchTree<Type>::findNode(const Type& value){
     BinarySearchTreeNode<Type> *root = this -> root();
     return find(root, value);
 }
 
 template <class Type>
-BinarySearchTreeNode<Type>* BinarySearchTree<Type>::find(BinarySearchTreeNode<Type> *root, Type value){
+BinarySearchTreeNode<Type>* BinarySearchTree<Type>::findNode(BinarySearchTreeNode<Type> *root, const Type& value){
     if (!root) {
         return NULL;
     }
@@ -578,7 +659,7 @@ unsigned int BinarySearchTree<Type>::farestDistance(BinarySearchTreeNode<Type> *
 #pragma mark - Rebuild Tree
 
 template <class Type>
-BinarySearchTreeNode<Type>* BinarySearchTree<Type>::reBuildTreeThroughPreAndInOrder(int *preOrder, int *inOrder, int nodeNum){
+BinarySearchTreeNode<Type>* BinarySearchTree<Type>::reBuildTreeThroughPreAndInOrder(int *preOrder, int *inOrder, unsigned int nodeNum){
     if (!preOrder || !inOrder || nodeNum <= 0) {
         return NULL;
     }
@@ -613,7 +694,7 @@ BinarySearchTreeNode<Type>* BinarySearchTree<Type>::reBuildTreeThroughPreAndInOr
 }
 
 template <class Type>
-BinarySearchTreeNode<Type>* BinarySearchTree<Type>::rebuildTreeThroughInAndPostOrder(int *inOrder, int *postOrder, int nodeNum){
+BinarySearchTreeNode<Type>* BinarySearchTree<Type>::rebuildTreeThroughInAndPostOrder(int *inOrder, int *postOrder, unsigned int nodeNum){
     if (!inOrder || !postOrder || nodeNum <= 0) {
         return NULL;
     }

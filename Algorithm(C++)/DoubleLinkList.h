@@ -34,22 +34,32 @@ template <class Type>
 class DoubleLinkList {
 public:
     
+    /*  Construct Function  */
+    //
     DoubleLinkList();
     DoubleLinkList(Type value);
     DoubleLinkList(vector<Type> values);
     
+    /*  The DLList's length  */
+    //
     unsigned int length();
     
     void insertNode(const Type &value);
     
 private:
+    /*  Private Variable  */
+    //
     DoubleLinkListHead<Type> *head_;
-    unsigned int length(DoubleLinkListHead<Type> *&head);
     
+    /*  Private Function  */
+    //
+    unsigned int length(DoubleLinkListHead<Type> *&head);
     void insertNode(DoubleLinkListHead<Type> *&head, Type &value);
     void deleteNode(DoubleLinkListHead<Type> *&head, Type &value);
     
 };
+
+#pragma mark - Construct Function
 
 template <class Type>
 DoubleLinkList<Type>::DoubleLinkList(){
@@ -63,5 +73,7 @@ DoubleLinkList<Type>::DoubleLinkList(Type value){
     }
     insertNode(value);
 }
+
+
 
 #endif /* defined(__Algorithm_C_____DoubleLinkList__) */
