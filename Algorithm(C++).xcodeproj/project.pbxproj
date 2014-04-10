@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		810268E418D6C79900E9D48F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 810268E318D6C79900E9D48F /* main.cpp */; };
 		810268E618D6C79900E9D48F /* Algorithm_C___.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 810268E518D6C79900E9D48F /* Algorithm_C___.1 */; };
+		81B19C3E18F5325000352B8C /* BinaryHeap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81B19C3C18F5325000352B8C /* BinaryHeap.cpp */; };
 		81B43F5118E548DA00209384 /* SingleLinkList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81B43F4F18E548DA00209384 /* SingleLinkList.cpp */; };
 		81B91D5E18F1120500B3DC97 /* AVLTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81B91D5C18F1120500B3DC97 /* AVLTree.cpp */; };
 		81CDBD8618E8734E001B3FC1 /* BinarySearchTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CDBD8418E8734E001B3FC1 /* BinarySearchTree.cpp */; };
@@ -33,6 +34,8 @@
 		810268E018D6C79900E9D48F /* Algorithm(C++) */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Algorithm(C++)"; sourceTree = BUILT_PRODUCTS_DIR; };
 		810268E318D6C79900E9D48F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		810268E518D6C79900E9D48F /* Algorithm_C___.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = "Algorithm_C___.1"; sourceTree = "<group>"; };
+		81B19C3C18F5325000352B8C /* BinaryHeap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinaryHeap.cpp; sourceTree = "<group>"; };
+		81B19C3D18F5325000352B8C /* BinaryHeap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryHeap.h; sourceTree = "<group>"; };
 		81B43F4F18E548DA00209384 /* SingleLinkList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SingleLinkList.cpp; sourceTree = "<group>"; };
 		81B43F5018E548DA00209384 /* SingleLinkList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleLinkList.h; sourceTree = "<group>"; };
 		81B91D5C18F1120500B3DC97 /* AVLTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AVLTree.cpp; sourceTree = "<group>"; };
@@ -80,6 +83,8 @@
 				81CDCB3018ECEF6200D22518 /* Stack.h */,
 				81CDCB3218ECF1EA00D22518 /* DoubleLinkList.cpp */,
 				81CDCB3318ECF1EA00D22518 /* DoubleLinkList.h */,
+				81B19C3C18F5325000352B8C /* BinaryHeap.cpp */,
+				81B19C3D18F5325000352B8C /* BinaryHeap.h */,
 				81B43F4F18E548DA00209384 /* SingleLinkList.cpp */,
 				81B43F5018E548DA00209384 /* SingleLinkList.h */,
 				81CDBD8418E8734E001B3FC1 /* BinarySearchTree.cpp */,
@@ -143,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81CDCB3418ECF1EA00D22518 /* DoubleLinkList.cpp in Sources */,
+				81B19C3E18F5325000352B8C /* BinaryHeap.cpp in Sources */,
 				81CDCB3118ECEF6200D22518 /* Stack.cpp in Sources */,
 				810268E418D6C79900E9D48F /* main.cpp in Sources */,
 				81B91D5E18F1120500B3DC97 /* AVLTree.cpp in Sources */,

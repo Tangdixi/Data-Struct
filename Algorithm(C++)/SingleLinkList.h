@@ -50,9 +50,13 @@ class SingleLinkList{
 public:
     
     /*  Construct Function 2  */
-    SingleLinkList();
-    SingleLinkList(const Type& value);
-    SingleLinkList(vector<Type>& values);
+    explicit SingleLinkList();
+    explicit SingleLinkList(const Type& value);
+    explicit SingleLinkList(vector<Type>& values);
+    
+    /*  Destruct Function  */
+    //
+    ~SingleLinkList();
     
     /*  Access Local Variable  */
     //
@@ -64,7 +68,7 @@ public:
     
     /*  Count Node's number in a list  */
     //
-    unsigned int nodeCount();
+    unsigned int nodeCount() const;
     
     /*  Find a node in a list, return a pointer to the node if the node exist  */
     //
@@ -80,7 +84,7 @@ public:
     
     /*  Insert a new node to the list in target index  */
     //
-    void insertToIndex(const Type& value, unsigned int index);
+    void insertToIndex(const Type& value, unsigned int& index);
     
     /*  Delete a node from a list  */
     //
@@ -110,6 +114,9 @@ public:
     //
     void findCircleEnterance();
 
+    /*  Make Empty  */
+    //
+    void makeEmpty();
     
 private:
     /*  Private variable  */
@@ -121,9 +128,10 @@ private:
     SingleLinkListNode<Type>* findNode(SingleLinkListHeadNode<Type> *&head, const Type& value);
     void insertToHead(SingleLinkListHeadNode<Type> *&head, const Type& value);
     void insertToTail(SingleLinkListHeadNode<Type> *&head, const Type& value);
-    void insertToIndex(SingleLinkListHeadNode<Type> *&head, const Type& value, unsigned int index);
+    void insertToIndex(SingleLinkListHeadNode<Type> *&head, const Type& value, unsigned int& index);
     void deleteNode(SingleLinkListHeadNode<Type> *&head, const Type& value);
-    void deleteIndex(SingleLinkListHeadNode<Type> *&head, const Type& value, unsigned int index);
+    void deleteIndex(SingleLinkListHeadNode<Type> *&head, const Type& value, unsigned int& index);
+    void makeEmpty(SingleLinkListHeadNode<Type> *&head);
     void traverseList(SingleLinkListHeadNode<Type> *&head);
     void reverseTraverseList(SingleLinkListNode<Type> *&node);
     unsigned int nodeCount(SingleLinkListHeadNode<Type> *&head);
@@ -157,6 +165,37 @@ SingleLinkList<Type>::SingleLinkList(vector<Type>& values){
     }
 }
 
+#pragma mark - Destruct Function
+
+template <class Type>
+SingleLinkList<Type>::~SingleLinkList<Type>(){
+    
+}
+
+#pragma mark - Destroy the list
+
+template <class Type>
+void SingleLinkList<Type>::makeEmpty(){
+    if (!head_) {
+        return ;
+    }
+    makeEmpty(head_);
+}
+
+template <class Type>
+void SingleLinkList<Type>::makeEmpty(SingleLinkListHeadNode<Type> *&head){
+    if (!head) {
+        return ;
+    }
+    SingleLinkListNode<Type> *node = head -> next;
+    while (node) {
+        SingleLinkListNode<Type> *temp = node;
+        node = node -> next;
+        delete temp;
+    }
+    delete head;
+}
+
 #pragma mark - Access  Private Variable
 
 template <class Type>
@@ -167,9 +206,11 @@ SingleLinkListHeadNode<Type>* SingleLinkList<Type>::head() const{
 #pragma mark - Basic Function
 
 template <class Type>
-unsigned int SingleLinkList<Type>::nodeCount(){
-    SingleLinkListHeadNode<Type> *head = this -> head();
-    return nodeCount(head);
+unsigned int SingleLinkList<Type>::nodeCount() const{
+    if (!head_) {
+        return 0;
+    }
+    return nodeCount(head_);
 }
 
 template <class Type>
@@ -195,8 +236,10 @@ void SingleLinkList<Type>::print(SingleLinkListNode<Type> *&node){
 
 template <class Type>
 void SingleLinkList<Type>::deleteNode(const Type &value){
-    SingleLinkListHeadNode<Type> *head = this -> head();
-    deleteNode(head, value);
+    if (!head_) {
+        return ;
+    }
+    deleteNode(head_, value);
 }
 
 template <class Type>
@@ -252,8 +295,10 @@ void SingleLinkList<Type>::insertToHead(SingleLinkListHeadNode<Type> *&head, con
 
 template <class Type>
 void SingleLinkList<Type>::insertToTail(const Type &value){
-    SingleLinkListHeadNode<Type> *head = this -> head();
-    insertToTail(head, value);
+    if (!head_) {
+        return ;
+    }
+    insertToTail(head_, value);
 }
 
 template <class Type>
@@ -281,13 +326,15 @@ void SingleLinkList<Type>::insertToTail(SingleLinkListHeadNode<Type> *&head, con
 }
 
 template <class Type>
-void SingleLinkList<Type>::insertToIndex(const Type &value, unsigned int index){
-    SingleLinkListHeadNode<Type> *head = this -> head();
-    insertToIndex(head, value, index);
+void SingleLinkList<Type>::insertToIndex(const Type &value, unsigned int &index){
+    if (!head_) {
+        return ;
+    }
+    insertToIndex(head_, value, index);
 }
 
 template <class Type>
-void SingleLinkList<Type>::insertToIndex(SingleLinkListHeadNode<Type> *&head, const Type &value, unsigned int index){
+void SingleLinkList<Type>::insertToIndex(SingleLinkListHeadNode<Type> *&head, const Type &value, unsigned int& index){
     if (!head) {
         cout << "Head node no found\n";
         return ;
@@ -314,8 +361,10 @@ void SingleLinkList<Type>::insertToIndex(SingleLinkListHeadNode<Type> *&head, co
 
 template <class Type>
 void SingleLinkList<Type>::traverseList(){
-    SingleLinkListHeadNode<Type> *head = this -> head();
-    traverseList(head);
+    if (!head_) {
+        return ;
+    }
+    traverseList(head_);
 }
 
 template <class Type>
@@ -351,9 +400,11 @@ void SingleLinkList<Type>::traverseList(SingleLinkListHeadNode<Type> *&head){
 
 template <class Type>
 void SingleLinkList<Type>::reverseTraverseList(){
-    SingleLinkListHeadNode<Type> *head = this -> head();
+    if (!head_) {
+        return ;
+    }
     cout << "Tail -> ";
-    reverseTraverseList(head -> next);
+    reverseTraverseList(head_ -> next);
     cout << " Head";
 }
 
@@ -372,8 +423,10 @@ void SingleLinkList<Type>::reverseTraverseList(SingleLinkListNode<Type> *&node){
 
 template <class Type>
 bool SingleLinkList<Type>::hasCircle(){
-    SingleLinkListHeadNode<Type> *head = this -> head();
-    if (!hasCircle(head)) {
+    if (!head_) {
+        return false;
+    }
+    if (!hasCircle(head_)) {
         return false;
     }
     return true;
@@ -402,8 +455,10 @@ SingleLinkListNode<Type>* SingleLinkList<Type>::hasCircle(SingleLinkListHeadNode
 
 template <class Type>
 SingleLinkListNode<Type>* SingleLinkList<Type>::findNode(const Type &value){
-    SingleLinkListHeadNode<Type> *head = this -> head();
-    return findNode(head, value);
+    if (!head_) {
+        return NULL;
+    }
+    return findNode(head_, value);
 }
 
 template <class Type>
@@ -424,8 +479,10 @@ SingleLinkListNode<Type>* SingleLinkList<Type>::findNode(SingleLinkListHeadNode<
 
 template <class Type>
 void SingleLinkList<Type>::createCircleToNode(const Type &value){
-    SingleLinkListHeadNode<Type> *head = this -> head();
-    createCircleToNode(head, value);
+    if (!head_) {
+        return ;
+    }
+    createCircleToNode(head_, value);
 }
 
 template <class Type>
@@ -451,8 +508,10 @@ void SingleLinkList<Type>::createCircleToNode(SingleLinkListHeadNode<Type> *&hea
 
 template <class Type>
 void SingleLinkList<Type>::findCircleEnterance(){
-    SingleLinkListHeadNode<Type> *head = this -> head();
-    cout << "The circle enterance is " << findCircleEnterance(head) -> value << '\n';
+    if (!head_) {
+        return ;
+    }
+    cout << "The circle enterance is " << findCircleEnterance(head_) -> value << '\n';
 }
 
 template <class Type>
