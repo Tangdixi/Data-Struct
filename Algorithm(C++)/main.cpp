@@ -23,19 +23,30 @@ void line();
 int main(int argc, const char * argv[])
 {
 
-    BinaryHeap<int> heap(100, MAX_HEAP);
+    vector<int> values;
+    values.push_back(32);
+    values.push_back(42);
+    values.push_back(120);
+    values.push_back(7);
+    values.push_back(42);
+    values.push_back(24);
+    values.push_back(37);
+    values.push_back(2);
     
-    heap.insertNode(10);
-    heap.insertNode(20);
-    heap.insertNode(5);
-    heap.insertNode(2);
-    heap.insertNode(50);
+    BinaryHeap<int> heap(values, MIN_HEAP);
+    
+//    heap.insertNode(32);
+//    heap.insertNode(42);
+//    heap.insertNode(120);
+//    heap.insertNode(7);
+//    heap.insertNode(42);
+//    heap.insertNode(24);
+//    heap.insertNode(37);
+//    heap.insertNode(2);
     
     heap.traverseHeap();
     line();
     
-    cout << heap.isLeaf(3);
-    line();
 }
 
 void line(){
