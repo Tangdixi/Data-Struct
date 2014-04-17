@@ -49,8 +49,8 @@ public:
     
     /*  Delete Min  */
     //
-    void deleteMin();
-    
+    void deleteTop();
+
     /*  Judge the current node in the BinaryHeap is a leaf  */
     //
     bool isLeaf(const unsigned long& index);
@@ -100,13 +100,9 @@ BinaryHeap<Type>::BinaryHeap(vector<Type>& values, bool heapType){
 
 template <class Type>
 void BinaryHeap<Type>::constructHeap(vector<Type>& values){
-//    for (unsigned long i = heapSize_ / 2; i > 0; i--) {
-//        percolateDown(i);
-//    }
-    percolateDown(4UL);
-    percolateDown(3UL);
-    percolateDown(2UL);
-    percolateDown(1UL);
+    for (unsigned long i = heapSize_ / 2; i > 0; i--) {
+        percolateDown(i);
+    }
     
 }
 
@@ -132,12 +128,17 @@ void BinaryHeap<Type>::insertNode(vector<Type>& values){
 #pragma mark - Delete Min 
 
 template <class Type>
-void BinaryHeap<Type>::deleteMin(){
+void BinaryHeap<Type>::deleteTop(){
     if (heapArray_.empty()) {
         return ;
     }
+    
+    heapArray_[1] = heapArray_[heapSize_];
+    heapSize_--;
+    
     percolateDown(1);
 }
+
 
 #pragma mark - Percolate Functions
 

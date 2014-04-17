@@ -6,4 +6,4 @@
 //  Copyright (c) 2014 Tangdxi. All rights reserved.
 //
 
-#include "Stack.h"
+#include "Stack(SingleLinkList).h"
