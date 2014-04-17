@@ -17,6 +17,7 @@
 		81CDCB3118ECEF6200D22518 /* Stack(SingleLinkList).cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CDCB2F18ECEF6200D22518 /* Stack(SingleLinkList).cpp */; };
 		81CDCB3418ECF1EA00D22518 /* DoubleLinkList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CDCB3218ECF1EA00D22518 /* DoubleLinkList.cpp */; };
 		81E4179C18FFAB9100875ACC /* Stack(Vector).cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81E4179A18FFAB9100875ACC /* Stack(Vector).cpp */; };
+		81E4179F18FFC74500875ACC /* Queue(SingleLinkList).cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81E4179D18FFC74500875ACC /* Queue(SingleLinkList).cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +53,8 @@
 		81CDCB3318ECF1EA00D22518 /* DoubleLinkList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleLinkList.h; sourceTree = "<group>"; };
 		81E4179A18FFAB9100875ACC /* Stack(Vector).cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Stack(Vector).cpp"; sourceTree = "<group>"; };
 		81E4179B18FFAB9100875ACC /* Stack(Vector).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Stack(Vector).h"; sourceTree = "<group>"; };
+		81E4179D18FFC74500875ACC /* Queue(SingleLinkList).cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Queue(SingleLinkList).cpp"; sourceTree = "<group>"; };
+		81E4179E18FFC74500875ACC /* Queue(SingleLinkList).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Queue(SingleLinkList).h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				810268E318D6C79900E9D48F /* main.cpp */,
+				81E4179D18FFC74500875ACC /* Queue(SingleLinkList).cpp */,
+				81E4179E18FFC74500875ACC /* Queue(SingleLinkList).h */,
 				81E4179A18FFAB9100875ACC /* Stack(Vector).cpp */,
 				81E4179B18FFAB9100875ACC /* Stack(Vector).h */,
 				81CDCB2F18ECEF6200D22518 /* Stack(SingleLinkList).cpp */,
@@ -159,6 +164,7 @@
 			files = (
 				81CDCB3418ECF1EA00D22518 /* DoubleLinkList.cpp in Sources */,
 				81B19C4118F7D1DA00352B8C /* LeftistHeap.cpp in Sources */,
+				81E4179F18FFC74500875ACC /* Queue(SingleLinkList).cpp in Sources */,
 				81B19C3E18F5325000352B8C /* BinaryHeap.cpp in Sources */,
 				81CDCB3118ECEF6200D22518 /* Stack(SingleLinkList).cpp in Sources */,
 				810268E418D6C79900E9D48F /* main.cpp in Sources */,

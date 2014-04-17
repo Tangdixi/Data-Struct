@@ -16,6 +16,7 @@
 #include "DoubleLinkList.h"
 #include "AVLTree.h"
 #include "BinaryHeap.h"
+#include "Queue(SingleLinkList).h"
 
 using namespace std;
 
@@ -23,18 +24,7 @@ void line();
 
 int main(int argc, const char * argv[])
 {
-    Stack<int> stack(10);
-    stack.push(10);
-    stack.push(20);
-    stack.push(30);
-    stack.push(40);
-    stack.traverseStack();
-    
-    stack.removeAllObjects();
 
-    line();
-    stack.traverseStack();
-    line();
 }
 
 void line(){
