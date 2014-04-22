@@ -17,6 +17,7 @@
 #include "AVLTree.h"
 #include "BinaryHeap.h"
 #include "Queue(SingleLinkList).h"
+#include "String.h"
 
 using namespace std;
 
@@ -24,6 +25,8 @@ void line();
 
 int main(int argc, const char * argv[])
 {
+    String name("Paul");
+    
 
 }
 
